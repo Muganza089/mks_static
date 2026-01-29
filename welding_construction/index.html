@@ -1,0 +1,799 @@
+
+<!DOCTYPE html>
+<html lang="en" class="dark loading">
+
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MKS Engineering</title>
+
+  <!-- ================= BOOTLOADER CSS (CRITIQUE) ================= -->
+  <style>
+    /* Tant que la page charge, TOUT est masqué sauf le loader */
+    html.loading body > *:not(#bootloader) {
+      display: none !important;
+    }
+
+    /* Transition propre */
+    #bootloader {
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+  </style>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+
+  <!-- Swiper -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/static/css/style.css">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+</head>
+<!-- ================= BACK TO TOP BUTTON ================= -->
+<button
+  id="backToTop"
+  aria-label="Remonter en haut"
+  class="fixed bottom-6 right-6 z-[9999]
+         hidden items-center justify-center
+         w-12 h-12 rounded-full
+         bg-primary text-white
+         shadow-lg
+         transition-all duration-300
+         hover:scale-110 hover:bg-black">
+
+  <span class="material-icons text-2xl">
+    keyboard_arrow_up
+  </span>
+</button>
+
+<body class="bg-background-light font-display">
+
+<!-- ================= BOOTLOADER ================= -->
+<div
+  id="bootloader"
+  class="fixed inset-0 z-[99999] flex flex-col items-center justify-center bg-white">
+
+  <h1 class="text-2xl font-extrabold text-primary tracking-wide mb-6">
+    MKS Engineering
+  </h1>
+
+  <div class="relative w-16 h-16">
+    <div class="absolute inset-0 rounded-full border-4 border-primary/20"></div>
+    <div class="absolute inset-0 rounded-full border-4 border-primary border-t-transparent animate-spin"></div>
+  </div>
+
+  <p class="mt-4 text-sm text-gray-500 tracking-wide">
+    Chargement…
+  </p>
+</div>
+
+<!-- ================= HEADERS ================= -->
+
+
+<header class="bg-primary border-b border-white/10 nav-glow">
+  <div class="max-w-7xl mx-auto px-6 py-3">
+
+    <!-- INFOS CENTRÉES -->
+    <nav class="hidden lg:flex items-center justify-center
+                gap-8 text-sm text-white font-medium">
+
+      <div class="flex items-center gap-2 hover:text-white/80 transition">
+        <img src="/static/icons/phone.png" class="w-5 h-5 invert">
+        <span>+243 972 717 272</span>
+      </div>
+
+      <div class="flex items-center gap-2 hover:text-white/80 transition">
+        <img src="/static/icons/gmail.png" class="w-5 h-5 invert">
+        <span>support@mksengineering.net</span>
+      </div>
+
+      <div class="flex items-center gap-2 hover:text-white/80 transition">
+        <img src="/static/icons/location.png" class="w-5 h-5 invert">
+        <span>Kolwezi – RDC</span>
+      </div>
+
+      <!-- RÉSEAUX SOCIAUX -->
+      <div class="flex items-center gap-4 ml-6">
+        <a href="#" class="hover:scale-110 transition">
+          <img src="/static/icons/facebook.png" class="w-5 h-5 invert">
+        </a>
+        <a href="#" class="hover:scale-110 transition">
+          <img src="/static/icons/tiktok.png" class="w-5 h-5 invert">
+        </a>
+      </div>
+
+    </nav>
+
+  </div>
+</header>
+
+
+<!-- ================= NAVBAR ================= -->
+<nav class="w-full bg-white sticky top-0 z-50 shadow-xl">
+  <div class="relative max-w-7xl mx-auto px-6 h-16 flex items-center">
+
+    <!-- LOGO (GAUCHE) -->
+    <div class="flex-shrink-0 z-10">
+      <a href="/" class="flex items-center gap-2">
+        <img src="/static/images/logo1.jpg"
+             alt="MKS Engineering"
+             class="h-12 md:h-14 object-contain">
+      </a>
+    </div>
+
+    <!-- MENU CENTRÉ -->
+    <div class="absolute left-1/2 -translate-x-1/2 hidden md:flex">
+      <ul class="flex items-center space-x-2 font-semibold uppercase text-sm h-16">
+
+        <!-- HOME -->
+        <li class="h-full flex items-center">
+          <a href="/"
+             class="relative h-full flex items-center px-4
+                    text-gray-800 transition-colors duration-300
+                    hover:text-primary
+                    after:content-['']
+                    after:absolute after:left-0 after:bottom-2
+                    after:w-full after:h-[2px]
+                    after:bg-primary
+                    after:scale-x-0 after:origin-left
+                    after:transition-transform after:duration-300
+                    hover:after:scale-x-100">
+            Accueil
+          </a>
+        </li>
+
+        <!-- SERVICES -->
+        <li class="relative h-full flex items-center group">
+          <a href="#"
+             class="relative h-full flex items-center gap-1 px-4
+                    text-gray-800 transition-colors duration-300
+                    hover:text-primary
+                    after:content-['']
+                    after:absolute after:left-0 after:bottom-2
+                    after:w-full after:h-[2px]
+                    after:bg-primary
+                    after:scale-x-0 after:origin-left
+                    after:transition-transform after:duration-300
+                    hover:after:scale-x-100">
+            Services
+            <svg class="w-4 h-4 transition-transform duration-300 group-hover:rotate-180"
+                 fill="none" stroke="currentColor" stroke-width="2"
+                 viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M19 9l-7 7-7-7"/>
+            </svg>
+          </a>
+
+          <!-- DROPDOWN -->
+          <ul class="absolute left-0 top-full w-64 bg-white text-gray-800
+                     shadow-xl border border-black/10
+                     opacity-0 invisible
+                     group-hover:opacity-100 group-hover:visible
+                     transition-all duration-300">
+
+            <li><a href="/welding_construction/" class="block px-5 py-3 hover:bg-primary hover:text-white">Construction & Soudure</a></li>
+            <li><a href="/computer/" class="block px-5 py-3 hover:bg-primary hover:text-white">Solutions informatiques</a></li>
+            <li><a href="/cctv/" class="block px-5 py-3 hover:bg-primary hover:text-white">Gardiennage & CCTV</a></li>
+          </ul>
+        </li>
+
+        <!-- CONTACT -->
+        <li class="h-full flex items-center">
+          <a href="/contact/"
+             class="relative h-full flex items-center px-4
+                    text-gray-800 transition-colors duration-300
+                    hover:text-primary
+                    after:content-['']
+                    after:absolute after:left-0 after:bottom-2
+                    after:w-full after:h-[2px]
+                    after:bg-primary
+                    after:scale-x-0 after:origin-left
+                    after:transition-transform after:duration-300
+                    hover:after:scale-x-100">
+            Contacts
+          </a>
+        </li>
+
+        <!-- A PROPOS -->
+        <li class="h-full flex items-center">
+          <a href="/a-propos/"
+             class="relative h-full flex items-center px-4
+                    text-gray-800 transition-colors duration-300
+                    hover:text-primary
+                    after:content-['']
+                    after:absolute after:left-0 after:bottom-2
+                    after:w-full after:h-[2px]
+                    after:bg-primary
+                    after:scale-x-0 after:origin-left
+                    after:transition-transform after:duration-300
+                    hover:after:scale-x-100">
+            À propos
+          </a>
+        </li>
+
+      </ul>
+    </div>
+
+    <!-- ESPACE DROIT (ÉQUILIBRE VISUEL) -->
+    <div class="ml-auto hidden md:block w-[120px]"></div>
+    <!-- MOBILE TOGGLE -->  
+        <button id="menuBtn"
+                class="md:hidden ml-auto p-2 text-primary hover:bg-gray-100 transition z-10">
+          <svg id="iconOpen" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2"
+              viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+
+          <svg id="iconClose" class="h-6 w-6 hidden" fill="none" stroke="currentColor" stroke-width="2"
+              viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+
+
+  </div>
+</nav>
+
+
+
+<!-- ================= OVERLAY ================= -->
+<div id="overlay"
+     class="fixed inset-0 bg-black/60
+            transform translate-x-full opacity-0
+            transition-all duration-500 ease-out
+            z-[9999]">
+</div>
+
+<!-- ================= MENU MOBILE LEFT ================= -->
+<aside id="mobileMenu"
+  onclick="event.stopPropagation()"
+  class="fixed top-0 left-0 h-full w-72 bg-primary
+         transform -translate-x-full
+         transition-transform duration-300
+         z-[10000] md:hidden
+         flex flex-col justify-between">
+
+  <!-- MOBILE LINKS -->
+  <div class="px-6 py-8 space-y-2 text-white font-semibold uppercase text-sm">
+
+    <a href="/" class="block py-2 hover:bg-white/10">Home</a>
+
+    <!-- SERVICES MOBILE -->
+    <button id="servicesBtn"
+      onclick="event.stopPropagation()"
+      class="w-full flex items-center justify-between py-2 hover:bg-white/10">
+      Services
+      <svg id="servicesArrow"
+        class="w-4 h-4 transition-transform"
+        fill="none" stroke="currentColor" stroke-width="2"
+        viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round"
+              d="M19 9l-7 7-7-7"/>
+      </svg>
+    </button>
+
+    <!-- SOUS-MENU MOBILE -->
+    <div id="servicesMenu"
+      class="ml-4 mt-1 space-y-1 hidden text-sm font-medium">
+
+      <a href="/welding_construction/" class="block py-2 hover:bg-white/10">Construction & Soudure</a>
+      <a href="/computer/" class="block py-2 hover:bg-white/10">Solutions informatiques</a>
+      <a href="/cctv/" class="block py-2 hover:bg-white/10">Gardiennage & CCTV</a>
+
+    </div>
+
+    <a href="/contact/" class="block py-2 hover:bg-white/10">Contacts</a>
+    <a href="/a-propos/" class="block py-2 hover:bg-white/10">À propos</a>
+
+  </div>
+
+  <!-- ================= CONTACTS FIXÉS EN BAS ================= -->
+  <div class="px-6 py-6 border-t border-white/20 text-white text-sm space-y-3">
+    <div class="flex items-center gap-2">
+      <img src="/static/icons/phone.png" class="w-5 h-5 invert">
+      <span>+243 972 717 272</span>
+    </div>
+    <div class="flex items-center gap-2">
+      <img src="/static/icons/gmail.png" class="w-5 h-5 invert">
+      <span>support@mksengineering.net</span>
+    </div>
+    <div class="flex items-center gap-2">
+      <img src="/static/icons/location.png" class="w-5 h-5 invert">
+      <span>Kolwezi – RDC</span>
+    </div>
+    <div class="flex gap-4 pt-2">
+      <a href="#"><img src="/static/icons/facebook.png" class="w-5 h-5 invert"></a>
+      <a href="#"><img src="/static/icons/tiktok.png" class="w-5 h-5 invert"></a>
+    </div>
+  </div>
+
+</aside>
+
+<!-- ================= SCRIPTS ================= -->
+<script>
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const overlay = document.getElementById('overlay');
+  const iconOpen = document.getElementById('iconOpen');
+  const iconClose = document.getElementById('iconClose');
+
+  function openMenu() {
+    mobileMenu.classList.remove('-translate-x-full');
+    overlay.classList.remove('translate-x-full', 'opacity-0');
+    overlay.classList.add('translate-x-0', 'opacity-100');
+    iconOpen.classList.add('hidden');
+    iconClose.classList.remove('hidden');
+  }
+
+  function closeMenu() {
+    mobileMenu.classList.add('-translate-x-full');
+    overlay.classList.add('translate-x-full', 'opacity-0');
+    overlay.classList.remove('translate-x-0', 'opacity-100');
+    iconOpen.classList.remove('hidden');
+    iconClose.classList.add('hidden');
+  }
+
+  menuBtn.addEventListener('click', () => {
+    mobileMenu.classList.contains('-translate-x-full') ? openMenu() : closeMenu();
+  });
+
+  overlay.addEventListener('click', closeMenu);
+</script>
+
+<script>
+  const servicesBtn = document.getElementById('servicesBtn');
+  const servicesMenu = document.getElementById('servicesMenu');
+  const servicesArrow = document.getElementById('servicesArrow');
+
+  servicesBtn.addEventListener('click', () => {
+    servicesMenu.classList.toggle('hidden');
+    servicesArrow.classList.toggle('rotate-180');
+  });
+</script>
+
+
+<!-- ================= CONTENU ================= -->
+<main id="content">
+  
+
+<!-- ================= HERO SOUDURE & CONSTRUCTION ================= -->
+<section class="relative w-full h-[320px] overflow-hidden">
+
+  <img
+    src="/static/images/tech.jpg"
+    alt="Soudure et Construction"
+    class="w-full h-full object-cover"
+  >
+
+  <div class="absolute inset-0 bg-black/60"></div>
+
+  <div class="absolute inset-0 flex items-center justify-center">
+    <h1 class="text-white text-4xl md:text-5xl font-extrabold tracking-wide text-center">
+      Soudure & Construction
+    </h1>
+  </div>
+
+</section>
+
+<!-- ================= CONSTRUCTION ================= -->
+<section class="w-full bg-white py-24">
+  <div class="max-w-7xl mx-auto px-6">
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+
+      <!-- Image Construction -->
+      <div class="w-full h-[420px] overflow-hidden">
+        <img
+          src="/static/images/building.jpg"
+          alt="Travaux de construction"
+          class="w-full h-full object-cover"
+        >
+      </div>
+
+      <!-- Texte Construction -->
+      <div>
+        <h2 class="text-3xl font-extrabold text-gray-800 mb-6">
+          Construction & Génie Civil
+        </h2>
+
+        <p class="text-gray-700 leading-relaxed text-lg">
+          MKS Engineering intervient dans le domaine de la construction et
+          du génie civil avec une approche professionnelle axée sur la qualité,
+          la sécurité et la durabilité des ouvrages.
+          <br><br>
+          Nous réalisons des travaux de construction, de réhabilitation et
+          d’aménagement d’infrastructures destinées aux entreprises,
+          institutions et particuliers. Chaque projet est conduit selon
+          des normes techniques rigoureuses afin de garantir solidité,
+          fiabilité et longévité.
+          <br><br>
+          Notre équipe qualifiée assure un suivi complet des travaux,
+          depuis l’étude du projet jusqu’à sa réalisation finale,
+          en veillant au respect des délais et des exigences du client.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= SOUDURE ================= -->
+<section class="w-full bg-gray-50 py-24">
+  <div class="max-w-7xl mx-auto px-6">
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+
+      <!-- Image Soudure -->
+      <div class="w-full h-[420px] overflow-hidden">
+        <img
+          src="/static/images/welding.jpg"
+          alt="Travaux de soudure"
+          class="w-full h-full object-cover"
+        >
+      </div>
+
+      <!-- Texte Soudure -->
+      <div>
+        <h2 class="text-3xl font-extrabold text-gray-800 mb-6">
+          Soudure & Métallurgie
+        </h2>
+
+        <p class="text-gray-700 leading-relaxed text-lg">
+          La soudure constitue un pilier essentiel dans la réalisation
+          d’ouvrages métalliques solides et durables. MKS Engineering
+          propose des services de soudure professionnelle adaptés aux
+          besoins industriels et techniques.
+          <br><br>
+          Nous effectuons des travaux de soudure structurelle,
+          d’assemblage métallique et de fabrication sur mesure,
+          en respectant strictement les normes de sécurité et de qualité.
+          <br><br>
+          Grâce à une expertise technique éprouvée, nous garantissons
+          des assemblages précis, résistants et conformes aux exigences
+          des projets les plus exigeants.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= FORMATION PRATIQUE EN SOUDURE ================= -->
+<section class="w-full bg-white py-24">
+  <div class="max-w-7xl mx-auto px-6">
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+
+      <!-- Image Formation -->
+      <div class="w-full h-[420px] overflow-hidden">
+        <img
+          src="/static/images/welding-training.jpg"
+          alt="Formation pratique en soudure"
+          class="w-full h-full object-cover"
+        >
+      </div>
+
+      <!-- Texte Formation -->
+      <div>
+        <h2 class="text-3xl font-extrabold text-gray-800 mb-6">
+          Formation pratique en soudure pour élèves
+        </h2>
+
+        <p class="text-gray-700 leading-relaxed text-lg">
+          Dans une démarche éducative et sociale, MKS Engineering
+          propose des formations pratiques en soudure destinées
+          aux élèves des écoles secondaires.
+          <br><br>
+          Ces formations permettent aux élèves d’acquérir des bases
+          solides en soudure, de comprendre les règles de sécurité,
+          de manipuler les équipements de manière encadrée et de
+          découvrir les métiers techniques liés à la métallurgie.
+          <br><br>
+          L’objectif est de renforcer les compétences pratiques,
+          de préparer les jeunes au monde professionnel et de
+          promouvoir les métiers techniques comme de véritables
+          opportunités d’avenir.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+  <!-- MAP -->
+  <div class="w-full h-[450px] overflow-hidden shadow-lg mt-12">
+    <iframe
+      src="https://www.openstreetmap.org/export/embed.html?bbox=25.45,-10.70,25.55,-10.60&layer=mapnik"
+      class="w-full h-full border-0"
+      loading="lazy">
+    </iframe>
+  </div>
+</main>
+
+<!-- ================= FOOTER ================= -->
+
+
+<!-- ================= BARRES AVANT FOOTER ================= -->
+<footer class="bg-footer-color text-white relative">
+  <div class="max-w-7xl mx-auto px-6 py-16">
+
+    <div class="grid md:grid-cols-3 gap-14">
+
+      <!-- CONTACT -->
+      <div>
+        <h3 class="text-xl font-bold mb-6">Contacts</h3>
+        <ul class="space-y-4 text-sm text-white/90">
+          <li class="flex gap-3 items-center">
+            <img src="/static/icons/phone.png" class="w-5 h-5">
+            +243 972 717 272
+          </li>
+          <li class="flex gap-3 items-center">
+            <img src="/static/icons/gmail.png" class="w-5 h-5">
+            support@mksengineering.net
+          </li>
+          <li class="flex gap-3 items-start">
+            <img src="/static/icons/location.png" class="w-5 h-5 mt-1">
+            Kolwezi – RDC
+          </li>
+        </ul>
+      </div>
+
+      <!-- SERVICES -->
+      <div>
+        <h3 class="text-xl font-bold mb-6">Nos services</h3>
+        <ul class="space-y-2 text-sm text-white/80">
+          <li>Construction & Génie civil</li>
+          <li>Soudure industrielle</li>
+          <li>Solutions informatiques</li>
+          <li>Formations</li>
+          <li>Gardiennage & CCTV</li>
+        </ul>
+      </div>
+
+      <!-- NEWSLETTER -->
+      <div>
+        <h3 class="text-xl font-bold mb-6">Newsletter</h3>
+        <p class="text-sm text-white/80 mb-4">
+          Recevez nos offres et actualités.
+        </p>
+        <form class="flex gap-3">
+          <input type="email"
+                 placeholder="Votre email"
+                 class="flex-1 px-4 py-2 rounded-lg text-gray-800">
+          <button class="bg-white text-primary px-6 py-2 rounded-lg font-semibold hover:bg-gray-200 transition">
+            OK
+          </button>
+        </form>
+      </div>
+
+    </div>
+
+    <p class="text-center text-sm text-white/70 mt-16 border-t border-white/20 pt-6">
+      © 2026 MKS Engineering — Tous droits réservés
+    </p>
+
+  </div>
+</footer>
+
+<script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#0A2440",
+            "background-light": "#FFFFFF",
+            "background-dark": "#0A2440",
+          },
+          fontFamily: {
+            display: ["Roboto", "sans-serif"],
+          },
+        },
+      },
+    };
+  </script>
+</head>
+
+
+<div id="cursor">
+  <span class="pupil"></span>
+  <span class="orbit o1"></span>
+  <span class="orbit o2"></span>
+  <span class="orbit o3"></span>
+</div>
+
+<script>
+  const cursor = document.getElementById("cursor");
+  const pupil = cursor.querySelector(".pupil");
+
+  let mouseX = window.innerWidth / 2;
+  let mouseY = window.innerHeight / 2;
+
+  let currentX = mouseX;
+  let currentY = mouseY;
+
+  let lastX = mouseX;
+  let lastY = mouseY;
+
+  let pupilX = 0;
+  let pupilY = 0;
+
+  /* ───────── États ───────── */
+  let isSpinning = false;
+  let spinAngle = 0;
+  let spinSpeed = 0.35;
+  let spinTime = 0;
+
+  /* ───────── Réglages ───────── */
+  const pupilRadius = 8;        // proche de la circonférence
+  const returnSpeed = 0.12;
+  const followSpeed = 0.25;
+  const movementThreshold = 0.5;
+  const maxSpinTime = 900;      // durée rotation visible (ms)
+
+  document.addEventListener("mousemove", (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+  });
+
+  function animate() {
+    /* ───────── Position curseur ───────── */
+    currentX += (mouseX - currentX) * followSpeed;
+    currentY += (mouseY - currentY) * followSpeed;
+
+    cursor.style.left = currentX + "px";
+    cursor.style.top = currentY + "px";
+
+    /* ───────── ROTATION AU CLIC ───────── */
+    if (isSpinning) {
+      spinAngle += spinSpeed;
+
+      pupilX = Math.cos(spinAngle) * pupilRadius;
+      pupilY = Math.sin(spinAngle) * pupilRadius;
+
+      spinTime += 16;
+
+      if (spinTime >= maxSpinTime) {
+        isSpinning = false;
+      }
+    } 
+    else {
+      /* ───────── Suivi directionnel ───────── */
+      const dx = mouseX - lastX;
+      const dy = mouseY - lastY;
+      const distance = Math.hypot(dx, dy);
+
+      if (distance > movementThreshold) {
+        const nx = dx / distance;
+        const ny = dy / distance;
+
+        pupilX = nx * pupilRadius;
+        pupilY = ny * pupilRadius;
+      } else {
+        pupilX += (0 - pupilX) * returnSpeed;
+        pupilY += (0 - pupilY) * returnSpeed;
+      }
+    }
+
+    pupil.style.transform =
+      `translate(-50%, -50%) translate(${pupilX}px, ${pupilY}px)`;
+
+    /* ───────── Inclinaison sphère ───────── */
+    const tiltX = Math.max(-8, Math.min(8, pupilY * 1.2));
+    const tiltY = Math.max(-8, Math.min(8, -pupilX * 1.2));
+
+    cursor.style.transform = `
+      translate(-50%, -50%)
+      rotateX(${tiltX}deg)
+      rotateY(${tiltY}deg)
+    `;
+
+    lastX = mouseX;
+    lastY = mouseY;
+
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+
+  /* ───────── Déclencheur clic ───────── */
+  document.addEventListener("click", () => {
+    isSpinning = true;
+    spinAngle = 0;
+    spinTime = 0;
+
+    cursor.classList.add("boost");
+    setTimeout(() => cursor.classList.remove("boost"), maxSpinTime);
+  });
+</script>
+
+<!-- ================= SWIPER INIT ================= -->
+<script>
+  window.addEventListener("load", function () {
+
+    /* Initialisation Swiper APRÈS chargement total */
+    document.querySelectorAll('.swiper').forEach(swiperEl => {
+      new Swiper(swiperEl, {
+        loop: true,
+        autoplay: {
+          delay: 4000,
+          disableOnInteraction: false,
+        },
+        pagination: {
+          el: swiperEl.querySelector('.swiper-pagination'),
+          clickable: true,
+        },
+      });
+    });
+
+    /* Désactivation du bootloader */
+    const html = document.documentElement;
+    const loader = document.getElementById("bootloader");
+
+    html.classList.remove("loading");
+
+    loader.style.opacity = "0";
+    loader.style.transform = "scale(1.05)";
+
+    setTimeout(() => {
+      loader.remove();
+    }, 400);
+  });
+</script>
+<script>
+  const backToTopBtn = document.getElementById("backToTop");
+
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 400) {
+      backToTopBtn.classList.remove("hidden");
+      backToTopBtn.classList.add("flex");
+    } else {
+      backToTopBtn.classList.add("hidden");
+      backToTopBtn.classList.remove("flex");
+    }
+  });
+
+  backToTopBtn.addEventListener("click", () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  });
+</script>
+
+
+<!-- ================= TAILWIND CONFIG ================= -->
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          primary: '#0c213b',
+          'brand-gray': '#756e6e',
+          'brand-blue': '#0c213b',
+          'brand-green': '#10B981',
+          'brand-emerald': '#b1c3f1ff',
+          'footer-color': '#0c1724',
+        },
+        fontFamily: {
+          heading: ['Poppins', 'ui-sans-serif'],
+          body: ['Quicksand', 'ui-sans-serif'],
+        },
+      }
+    }
+  }
+</script>
+
+</body>
+</html>
